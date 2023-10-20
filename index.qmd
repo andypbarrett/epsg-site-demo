@@ -1,0 +1,121 @@
+---
+title: "EPSG:3411"
+format:
+  html:
+    toc: true
+    html-math-method: katex
+    code-fold: true
+    css: styles.css
+    echo: false
+---
+
+```{python}
+from pyproj import CRS
+from IPython.display import display, Markdown
+
+from pprint import pprint
+
+import util
+
+crs = CRS.from_epsg(3411)
+```
+
+```{python}
+display(Markdown(f"## {crs.name}"))
+```
+
+### Attributes
+:::: {.columns}
+
+::: {.column width="33.33%"}
+```{python}
+display(Markdown(f"**Unit:** {crs.axis_info[0].unit_name}"))
+```
+
+```{python}
+display(Markdown(f"**Geodetic CRS:** {util.get_geodetic_crs(crs)}"))
+```
+
+```{python}
+display(Markdown(f"**Datum:** {util.get_datum_name(crs)}"))
+```
+
+```{python}
+display(Markdown(f"**Data Source:** EPSG  {util.get_epsg_version_string()}"))
+```
+
+**Information Source:**
+
+**Revision Date:**
+
+:::
+
+::: {.column width="33.33%"}
+```{python}
+display(Markdown(f"**Scope:** {crs.scope}"))
+```
+
+```{python}
+display(Markdown(f"**Remarks:** {crs.remarks}"))
+```
+
+```{python}
+display(Markdown(f"**Area of use:** {crs.area_of_use.name}"))
+```
+
+```{python}
+display(Markdown(f"**Coordinate System:** {util.get_coordinate_system(crs)}"))
+```
+
+```{python}
+display(Markdown(f"**Projection:** {util.get_coordinate_operation(crs)}"))
+```
+
+:::
+
+::: {.column width="33.33%"}
+**Center Coordinates:**
+
+:::
+
+::::
+
+
+::: {.panel-tabset}
+## WKT1
+
+``` {python}
+#| echo: false
+print(crs.to_wkt(version="WKT1_GDAL", pretty=True))
+```
+
+## WKT2
+``` {python}
+#| echo: false
+print(crs.to_wkt(version="WKT2_2019", pretty=True))
+```
+
+## PROJ4
+``` {python}
+#| echo: false
+print(crs.to_proj4())
+```
+
+## WKT_ESRI
+``` {python}
+#| echo: false
+print(crs.to_wkt(version="WKT1_ESRI", pretty=True))
+```
+
+## JSON
+``` {python}
+#| echo: false
+print(crs.to_json(pretty=True))
+```
+
+## CF
+``` {python}
+pprint(crs.to_cf())
+```
+
+:::
