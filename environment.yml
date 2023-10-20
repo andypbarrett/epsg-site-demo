@@ -1,0 +1,17 @@
+name: epsg_io_spoof
+
+dependencies:
+  - python ~= 3.10
+
+############################################
+# Imported dependecies and extennsions     #
+############################################
+
+  - jupyterlab
+  - pyproj
+  - gdal
+  - matplotlib
+  - cartopy
+  - affine
+
+  
